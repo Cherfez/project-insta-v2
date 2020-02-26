@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import SASS from "../style/global.scss";
-// import userInfo from "./express"; //the script
 import axios from "axios";
+const styling = require("./Cards.css");
 
 export default function Card() {
   {
@@ -26,17 +25,19 @@ export default function Card() {
   ];*/
   }
 
-  const [userInfo, set_userInfo] = useState([]);
+  const [userInfo, set_userInfo] = useState([]); // show nothing to start with
+
   useEffect(() => {
     console.log("The useEffect action!");
-    getUsers();
+    getUsers(); // only run the function once
   }, []);
 
   async function getUsers() {
+    // same name as from the express app
     try {
-      const response = await axios.get("http://localhost:4000/");
-      console.log("response ", response);
-      set_userInfo(response.data);
+      const response = await axios.get("http://localhost:4000/"); //port of server
+      console.log("response ", response); // to see different options coming from response
+      set_userInfo(response.data); //started with empty array, now send all the data from the response (see Axios above)
     } catch (error) {
       console.log("error test:", error.message);
     }

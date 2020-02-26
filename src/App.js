@@ -6,7 +6,9 @@ import Cards from "./components/cards";
 function App() {
   return (
     <div className="App">
-      <Cards />
+      <div class="container">
+        <Cards />
+      </div>
     </div>
   );
 }
