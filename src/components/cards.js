@@ -1,6 +1,6 @@
-import React from "react";
-import SASS from "../style/global.scss";
-import userInfo from "./express"; //the script
+import React, { useEffect, useState } from "react";
+// import SASS from "../style/global.scss";
+// import userInfo from "./express"; //the script
 import axios from "axios";
 
 export default function Card() {
@@ -26,9 +26,17 @@ export default function Card() {
   ];*/
   }
 
+  const [userInfo, set_userInfo] = useState([]);
+  useEffect(() => {
+    console.log("The useEffect action!");
+    getUsers();
+  }, []);
+
   async function getUsers() {
     try {
-      const response = await axios.get("localhost:4000/");
+      const response = await axios.get("http://localhost:4000/");
+      console.log("response ", response);
+      set_userInfo(response.data);
     } catch (error) {
       console.log("error test:", error.message);
     }
